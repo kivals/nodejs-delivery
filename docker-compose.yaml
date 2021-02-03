@@ -1,0 +1,15 @@
+version: '3.2'
+services:
+  delivery-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs-delivery
+    container_name: nodejs-delivery-ctn
+    env_file: .env
+    environment:
+      - APP_PORT=$APP_PORT
+    ports:
+    - 8000:$APP_PORT
+    volumes:
+    - .:/home/node/app
