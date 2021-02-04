@@ -1,16 +1,11 @@
 const express = require('express');
 
 const router = express.Router();
-const advertisementController = require('../controllers/advertisement.controller');
+const { advertisementController } = require('../controllers');
 
 router
   .route('/')
-  .get(advertisementController.advertisements)
-  .post(advertisementController.uploadAdvertisement);
-
-router
-  .route('/advertisements/:id')
-  .get(advertisementController.advertisementById)
-  .delete(advertisementController.deleteAdvertisement);
+  .get(advertisementController.getAdvertisements)
+  .post(advertisementController.createAdvertisements);
 
 module.exports = router;

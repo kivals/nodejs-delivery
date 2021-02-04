@@ -1,7 +1,11 @@
+const mongoose = require('mongoose');
 const app = require('./app');
 const logger = require('./lib/logger');
 const config = require('./config');
 
-app.listen(config.port, config.host, () => {
-  logger.info(`Server is running on ${config.host}:${config.port}`);
+mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
+  logger.info('Connected to MongoDD');
+  app.listen(config.port, () => {
+    logger.info(`Server is running on ${config.port} port`);
+  });
 });

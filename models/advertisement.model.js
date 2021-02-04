@@ -16,7 +16,7 @@ const advertisementSchema = mongoose.Schema({
   },
   userId: {
     type: mongoose.Types.ObjectId,
-    required: true,
+    // required: true,
     trim: true,
   },
   tags: {
