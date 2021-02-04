@@ -14,4 +14,9 @@ module.exports = {
       useUnifiedTopology: true,
     },
   },
+  crypto: {
+    iterations: process.env.NODE_ENV !== 'production' ? 1 : 12000,
+    length: 128,
+    digest: 'sha512',
+  },
 };
