@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(logger);
 app.use('/api', routes);
 
+// error handler
 app.use(apiErrorHandler);
 
 module.exports = app;
