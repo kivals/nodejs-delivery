@@ -61,6 +61,11 @@ function generateSalt() {
   });
 }
 
+userSchema.statics.isEmailTaken = async function (email) {
+  const user = await this.findOne({ email });
+  return !!user;
+};
+
 userSchema.methods.setPassword = async function setPassword(password) {
   this.salt = await generateSalt();
   this.passwordHash = await generatePassword(this.salt, password);
