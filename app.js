@@ -1,6 +1,6 @@
 const express = require('express');
 const routes = require('./routes');
-const { errorHandler } = require('./middlewares/error');
+const { apiErrorHandler } = require('./middlewares/error');
 
 const app = express();
 
@@ -12,6 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api', routes);
 
-app.use(errorHandler);
+app.use(apiErrorHandler);
 
 module.exports = app;
