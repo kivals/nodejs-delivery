@@ -8,6 +8,12 @@ const register = customJoi.object({
   contactPhone: customJoi.string().phoneNumber().required(),
 });
 
+const login = customJoi.object({
+  email: customJoi.string().required().email(),
+  password: customJoi.string().min(6).required(),
+});
+
 module.exports = {
   register,
+  login,
 };

@@ -24,6 +24,7 @@
     "mongoose": "^5.11.14",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "uuid-v4": "^0.1.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {

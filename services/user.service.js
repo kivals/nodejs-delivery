@@ -15,6 +15,9 @@ const createUser = async (userBody) => {
   return user.save();
 };
 
+const findByEmail = async (email) => await User.findOne({ email });
+
 module.exports = {
   createUser,
+  findByEmail,
 };

@@ -11,4 +11,5 @@ router.post(
   authController.register,
 );
 
+router.post('/signin', validate(authValidation.login), authController.login);
 module.exports = router;

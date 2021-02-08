@@ -30,6 +30,9 @@ const userSchema = mongoose.Schema(
     contactPhone: {
       type: String,
     },
+    salt: {
+      type: String,
+    },
   },
   {
     timestamps: true,
@@ -73,7 +76,6 @@ userSchema.methods.setPassword = async function setPassword(password) {
 
 userSchema.methods.checkPassword = async function (password) {
   if (!password) return false;
-
   const hash = await generatePassword(this.salt, password);
   return hash === this.passwordHash;
 };
