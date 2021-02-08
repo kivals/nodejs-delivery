@@ -12,6 +12,7 @@ module.exports = async (req, res, next) => {
     if (session) {
       session.lastVisit = new Date();
       await session.save();
+      req.user = session.user;
     }
   } catch (e) {
     return next(e);

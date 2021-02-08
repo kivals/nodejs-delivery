@@ -1,30 +1,31 @@
 const mongoose = require('mongoose');
 // TODO Не забыть про валидацию
 const advertisementSchema = mongoose.Schema({
-  shortText: {
+  shortTitle: {
     type: String,
     required: true,
     trim: true,
   },
   description: {
     type: String,
+    required: true,
     trim: true,
   },
   images: {
     type: Array,
-    trim: true,
+    required: true,
+    max: 10,
   },
-  userId: {
+  user: {
     type: mongoose.Types.ObjectId,
-    // required: true,
-    trim: true,
+    required: true,
+    ref: 'User',
   },
   tags: {
     type: Array,
   },
   isDeleted: {
     type: Boolean,
-    required: true,
   },
 });
 
