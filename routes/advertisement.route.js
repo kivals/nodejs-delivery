@@ -19,4 +19,8 @@ router
     advertisementController.createAdvertisements,
   );
 
+router
+  .route('/:id')
+  .delete(mustBeAuthenticated, advertisementController.deleteAdvertisement);
+
 module.exports = router;

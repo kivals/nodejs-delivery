@@ -52,7 +52,20 @@ const createAdvertisements = async (req, res, next) => {
   }
 };
 
+const deleteAdvertisement = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await advertisementService.deleteAdvertisement(id, req.user.id);
+    res.json({
+      status: 'ok',
+    });
+  } catch (e) {
+    return next(e);
+  }
+};
+
 module.exports = {
   getAdvertisements,
   createAdvertisements,
+  deleteAdvertisement,
 };
