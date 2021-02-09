@@ -1,3 +1,4 @@
+const ApiError = require('../lib/api-error');
 const { advertisementService } = require('../services');
 
 const getAdvertisements = async (req, res, next) => {
@@ -19,6 +20,32 @@ const getAdvertisements = async (req, res, next) => {
     });
   } catch (e) {
     return next(e);
+  }
+};
+
+const getAdvertisementById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const advertisement = await advertisementService.getAdvertisementById(id);
+    if (!advertisement) {
+      return next(ApiError.notFound('Advertisement not found'));
+    }
+    res.json({
+      data: {
+        id: advertisement.id,
+        shortTitle: advertisement.shortTitle,
+        description: advertisement.description,
+        images: advertisement.images,
+        user: {
+          id: advertisement.user.id,
+          name: advertisement.user.name,
+        },
+        createdAt: advertisement.createdAt,
+      },
+      status: 'ok',
+    });
+  } catch (e) {
+    next(e);
   }
 };
 
@@ -66,6 +93,7 @@ const deleteAdvertisement = async (req, res, next) => {
 
 module.exports = {
   getAdvertisements,
+  getAdvertisementById,
   createAdvertisements,
   deleteAdvertisement,
 };

@@ -21,6 +21,7 @@ router
 
 router
   .route('/:id')
+  .get(advertisementController.getAdvertisementById)
   .delete(mustBeAuthenticated, advertisementController.deleteAdvertisement);
 
 module.exports = router;

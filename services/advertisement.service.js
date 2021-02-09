@@ -15,14 +15,15 @@ const createAdvertisement = async (data) => {
   return advertisement.populate('user').execPopulate();
 };
 
-const getAdvertisementById = async (id) => Advertisement.findById(id);
+const getAdvertisementById = async (id) =>
+  Advertisement.findById(id).populate('user');
 
 const deleteAdvertisement = async (id, userId) => {
   const deletedAdv = await getAdvertisementById(id);
   if (!deletedAdv) {
     throw ApiError.notFound('Advertisement not found');
   }
-  if (deletedAdv.user.toString() !== userId.toString()) {
+  if (deletedAdv.user.id.toString() !== userId.toString()) {
     throw ApiError.forbidden('Not access');
   }
   await deletedAdv.remove();
@@ -31,6 +32,7 @@ const deleteAdvertisement = async (id, userId) => {
 
 module.exports = {
   queryAdvertisement,
+  getAdvertisementById,
   createAdvertisement,
   deleteAdvertisement,
 };
