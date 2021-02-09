@@ -1,6 +1,6 @@
 const { Advertisement } = require('../models');
 
-const queryAdvertisement = async () => Advertisement.find({});
+const queryAdvertisement = async () => Advertisement.find({}).populate('user');
 
 const createAdvertisement = async (data) => {
   const { shortTitle, description, images, user, userName } = data;

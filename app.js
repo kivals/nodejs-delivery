@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 app.use(logger);
 app.use(session);
 app.use(passport.initialize());
+app.use(express.static(`${__dirname}/uploads`));
 app.use('/api', routes);
 
 // error handler
