@@ -1,9 +1,8 @@
 const { Advertisement } = require('../models');
 
 const queryAdvertisement = async () => Advertisement.find({});
+
 const createAdvertisement = async (data) => {
-  console.log('SERVICE');
-  console.log(data);
   const { shortTitle, description, images, user, userName } = data;
   const advertisement = await Advertisement.create({
     shortTitle,
@@ -12,7 +11,7 @@ const createAdvertisement = async (data) => {
     user,
     name: userName,
   });
-  return advertisement;
+  return advertisement.populate('user').execPopulate();
 };
 
 module.exports = {

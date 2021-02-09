@@ -18,7 +18,21 @@ const createAdvertisements = async (req, res, next) => {
     user: req.user.id,
     name: req.user.name,
   });
-  res.json(advertisement);
+
+  res.json({
+    data: {
+      id: advertisement.id,
+      shortTitle: advertisement.shortTitle,
+      description: advertisement.description,
+      images: advertisement.images,
+      user: {
+        id: advertisement.user.id,
+        name: advertisement.user.name,
+      },
+      createdAt: advertisement.createdAt,
+    },
+    status: 'ok',
+  });
 };
 
 module.exports = {
