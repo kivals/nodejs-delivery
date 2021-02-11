@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const routes = require('./routes');
 const { apiErrorHandler } = require('./middlewares/error');
 const logger = require('./middlewares/logger');
@@ -12,6 +13,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse json request body
 app.use(bodyParser.json());
+// enable cors
+app.use(cors());
 app.use(logger);
 app.use(session);
 app.use(passport.initialize());

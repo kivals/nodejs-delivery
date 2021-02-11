@@ -3,9 +3,10 @@ const { advertisementService } = require('../services');
 
 const getAdvertisements = async (req, res, next) => {
   try {
-    const advertisement = await advertisementService.queryAdvertisement();
+    const advertisements = await advertisementService.queryAdvertisement();
+    console.log(advertisements);
     res.json({
-      data: advertisement.map((adv) => ({
+      data: advertisements.map((adv) => ({
         id: adv.id,
         shortTitle: adv.shortTitle,
         description: adv.description,

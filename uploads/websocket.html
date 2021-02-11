@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minimal working example</title>
+</head>
+<body>
+<ul id="events"></ul>
+<div>
+  <label for="userId">ID собеседника</label>
+  <input id="userId" type="text" value="6023cf50ff872c00326d142d">
+  <ul id="chatHistoryList"></ul>
+  <button id="getHistory">GET_HISTORY</button>
+</div>
+<div>
+  <label for="text"></label>
+  <textarea id="text" name="msg" cols="30" rows="10"></textarea>
+  <button id="sendMessage">SEND_MESSAGE</button>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const $events = document.getElementById('events');
+  const $getHistoryBtn = document.getElementById('getHistory');
+  const $sendMessageBtn = document.getElementById('sendMessage');
+  const $userIdInput = document.getElementById('userId');
+  const $message = document.getElementById('text');
+  const $chatHistoryList = document.getElementById('chatHistoryList');
+
+  const newItem = (content) => {
+    const item = document.createElement('li');
+    item.innerText = content;
+    return item;
+  };
+
+
+  const socket = io({
+    withCredentials: true,
+    extraHeaders: {
+      "Authorization": "Barear 101cb1fe-e2c0-4c2d-a28a-b70194bc7c72"
+    }
+  });
+
+  socket.on('connect', () => {
+    $events.appendChild(newItem('connect'));
+  });
+
+  socket.on("connect_error", (err) => {
+    console.log(err.message); // not authorized
+    $events.appendChild(newItem(err.message));
+  });
+
+  socket.on('chatHistory', (data) => {
+    $chatHistoryList.innerHTML = '';
+    if (data.error) {
+      $chatHistoryList.appendChild(newItem(data.error));
+    } else {
+      data.messages.forEach(m => {
+        $chatHistoryList.appendChild(newItem(m));
+      })
+    }
+  });
+
+  $getHistoryBtn.addEventListener('click', () => {
+    socket.emit('getHistory', $userIdInput.value)
+  });
+
+  $sendMessageBtn.addEventListener('click', () => {
+    const receiver = $userIdInput.value;
+    const text = $message.value;
+    socket.emit('sendMessage', {
+      receiver, text,
+    })
+  })
+
+
+</script>
+</body>
+</html>

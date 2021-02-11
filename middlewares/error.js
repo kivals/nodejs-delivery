@@ -9,6 +9,7 @@ module.exports.apiErrorHandler = (err, req, res, next) => {
     errorMessage = err.message;
     status = err.code;
   }
+  console.log(err.stack);
   res.status(status).json({
     error: errorMessage,
     status: 'error',
