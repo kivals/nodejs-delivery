@@ -1,6 +1,7 @@
 const { Chat } = require('../models');
 const messageService = require('./message.service');
 
+// TODO ошибки
 const sendMessage = async (data) => {
   const { authorId, receiver, text } = data;
   // создаем новое сообщение
