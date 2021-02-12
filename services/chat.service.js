@@ -2,6 +2,7 @@ const { Chat } = require('../models');
 const messageService = require('./message.service');
 
 // TODO ошибки
+// вынести поиск чата из функции
 const sendMessage = async (data) => {
   const { authorId, receiver, text } = data;
   // создаем новое сообщение
@@ -18,9 +19,12 @@ const sendMessage = async (data) => {
       messages: [message],
     });
     await newChat.save();
-    return newChat;
   }
+
+  return message;
 };
+
+const subscribe = (cb) => {};
 
 const find = async (users) =>
   Chat.findOne({ users: { $all: users } }).populate('messages');
@@ -28,4 +32,5 @@ const find = async (users) =>
 module.exports = {
   find,
   sendMessage,
+  subscribe,
 };
