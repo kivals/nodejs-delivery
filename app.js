@@ -11,7 +11,7 @@ const ApiError = require('./lib/api-error');
 
 const app = express();
 // set security HTTP headers
-app.use(helmet());
+// app.use(helmet());
 // parse urlencoded request body
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse json request body

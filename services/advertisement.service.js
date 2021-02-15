@@ -28,6 +28,7 @@ const deleteAdvertisement = async (id, userId) => {
     throw ApiError.forbidden('Not access');
   }
   return deletedAdv.updateOne({ isDeleted: true });
+  // return deletedAdv;
 };
 
 module.exports = {

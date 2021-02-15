@@ -35,6 +35,7 @@ npm run docker:dev
 - **Authentication and authorization**: using [passport](http://www.passportjs.org)
 - **Validation**: request data validation using [Joi](https://github.com/hapijs/joi)
 - **Logging**: using [morgan](https://github.com/expressjs/morgan)
+- **Handling multipart/form-data**: using [multer](https://github.com/expressjs/multer)
 - **Error handling**: centralized error handling mechanism
 - **Dependency management**: with [npm](https://npmjs.com)
 - **Environment variables**: using [dotenv](https://github.com/motdotla/dotenv) and [cross-env](https://github.com/kentcdodds/cross-env#readme)
