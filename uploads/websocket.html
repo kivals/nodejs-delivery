@@ -50,6 +50,10 @@
     $events.appendChild(newItem(err.message));
   });
 
+  socket.on("newMessage", (msg) => {
+    $chatHistoryList.appendChild(newItem(msg));
+  });
+
   socket.on('chatHistory', (data) => {
     $chatHistoryList.innerHTML = '';
     if (data.error) {

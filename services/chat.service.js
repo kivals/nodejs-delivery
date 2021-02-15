@@ -3,28 +3,21 @@ const messageService = require('./message.service');
 
 // TODO ошибки
 // вынести поиск чата из функции
-const sendMessage = async (data) => {
-  const { authorId, receiver, text } = data;
+const sendMessage = async (chat, data) => {
+  const { authorId, text } = data;
   // создаем новое сообщение
   const message = await messageService.createMessage(authorId, text);
 
-  // поиск чата, если найден добавляем сообщение ему
-  const chat = await Chat.findOneAndUpdate(
-    { users: [authorId, receiver] },
-    { $push: { messages: message } },
-  );
-  if (!chat) {
-    const newChat = new Chat({
-      users: [authorId, receiver],
-      messages: [message],
-    });
-    await newChat.save();
-  }
-
+  await chat.updateOne({ $push: { messages: message } });
   return message;
 };
 
-const subscribe = (cb) => {};
+const createChat = async (users) => {
+  const newChat = new Chat({
+    users,
+  });
+  return newChat.save();
+};
 
 const find = async (users) =>
   Chat.findOne({ users: { $all: users } }).populate('messages');
@@ -32,5 +25,5 @@ const find = async (users) =>
 module.exports = {
   find,
   sendMessage,
-  subscribe,
+  createChat,
 };
