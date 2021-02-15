@@ -4,11 +4,10 @@ const { advertisementService } = require('../services');
 const getAdvertisements = async (req, res, next) => {
   try {
     const advertisements = await advertisementService.queryAdvertisement();
-    console.log(advertisements);
     res.json({
       data: advertisements.map((adv) => ({
         id: adv.id,
-        shortTitle: adv.shortTitle,
+        shortText: adv.shortText,
         description: adv.description,
         images: adv.images,
         user: {
@@ -34,7 +33,7 @@ const getAdvertisementById = async (req, res, next) => {
     res.json({
       data: {
         id: advertisement.id,
-        shortTitle: advertisement.shortTitle,
+        shortText: advertisement.shortText,
         description: advertisement.description,
         images: advertisement.images,
         user: {
@@ -51,10 +50,10 @@ const getAdvertisementById = async (req, res, next) => {
 };
 
 const createAdvertisements = async (req, res, next) => {
-  const { shortTitle, description, images } = req.body;
+  const { shortText, description, images } = req.body;
   try {
     const advertisement = await advertisementService.createAdvertisement({
-      shortTitle,
+      shortText,
       description,
       images,
       user: req.user.id,
@@ -64,7 +63,7 @@ const createAdvertisements = async (req, res, next) => {
     res.json({
       data: {
         id: advertisement.id,
-        shortTitle: advertisement.shortTitle,
+        shortText: advertisement.shortText,
         description: advertisement.description,
         images: advertisement.images,
         user: {

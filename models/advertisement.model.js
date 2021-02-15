@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-// TODO Не забыть про валидацию
+
 const advertisementSchema = mongoose.Schema({
-  shortTitle: {
+  shortText: {
     type: String,
     required: true,
     trim: true,

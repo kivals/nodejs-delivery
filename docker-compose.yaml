@@ -26,18 +26,6 @@ services:
     networks:
       - node-network
 
-  mongo-express:
-    image: mongo-express
-    restart: always
-    ports:
-      - 8081:8081
-    environment:
-      - ME_CONFIG_MONGODB_SERVER=mongodb
-    depends_on:
-      - mongodb
-    networks:
-      - node-network
-
 volumes:
   dbdata:
 

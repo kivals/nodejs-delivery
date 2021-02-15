@@ -4,9 +4,9 @@ const ApiError = require('../lib/api-error');
 const queryAdvertisement = async () => Advertisement.find({}).populate('user');
 
 const createAdvertisement = async (data) => {
-  const { shortTitle, description, images, user, userName } = data;
+  const { shortText, description, images, user, userName } = data;
   const advertisement = await Advertisement.create({
-    shortTitle,
+    shortText,
     description,
     images,
     user,
