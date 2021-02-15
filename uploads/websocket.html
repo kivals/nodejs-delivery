@@ -26,7 +26,7 @@
   const $userIdInput = document.getElementById('userId');
   const $message = document.getElementById('text');
   const $chatHistoryList = document.getElementById('chatHistoryList');
-  const token = '101cb1fe-e2c0-4c2d-a28a-b70194bc7c72';
+  const token = '569fe413-40f8-4ac9-bcc7-34f75aecea7e';
 
   const newItem = (content) => {
     const item = document.createElement('li');
@@ -34,11 +34,10 @@
     return item;
   };
 
-
   const socket = io({
     withCredentials: true,
     extraHeaders: {
-      "Authorization": `Barear ${ token }`
+      "Authorization": `Barear 569fe413-40f8-4ac9-bcc7-34f75aecea7e`
     }
   });
 
