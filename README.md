@@ -6,6 +6,10 @@
 ```bash
 cp .env.example .env
 ```
+Установить модули:
+```bash
+npm install
+```
 Запустить сервер
 ```bash
 npm run docker:dev
